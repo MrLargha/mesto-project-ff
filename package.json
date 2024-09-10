@@ -1,0 +1,28 @@
+{
+  "name": "mesto-project-ff",
+  "version": "1.0.0",
+  "description": "Project for Yandex.Practicum",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrLargha/mesto-project-ff.git"
+  },
+  "keywords": [
+    "mesto"
+  ],
+  "author": "MrLargha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrLargha/mesto-project-ff/issues"
+  },
+  "homepage": "https://github.com/MrLargha/mesto-project-ff#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  }
+}
