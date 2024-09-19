@@ -1,7 +1,5 @@
-"use strict";
-
+// Закрыть модальное окно
 export function closeModal(modal) {
-  modal.classList.add("popup_is-animated");
   modal.classList.remove("popup_is-opened");
 
   modal.removeEventListener("click", handleOverlayClick);
@@ -12,15 +10,17 @@ export function closeModal(modal) {
 
   setTimeout(function () {
     modal.classList.remove("popup_is-animated");
-  }, 600);
+  }, 600); // Задержка анимации, в миллисекундах
 }
 
 // Открыть модальное окно
 export function openModal(modal) {
   modal.classList.add("popup_is-animated");
+
   setTimeout(function () {
     modal.classList.add("popup_is-opened");
-  }, 1);
+  }, 1); 
+
   modal.addEventListener("click", handleOverlayClick);
   document.addEventListener("keydown", handleKeyDown);
   modal
@@ -28,7 +28,7 @@ export function openModal(modal) {
     .addEventListener("click", handleCloseButtonClick);
 }
 
-// Закрытие через оверлей
+//Обработчики закрытия попапов:
 function handleOverlayClick(event) {
   const modal = event.currentTarget;
   if (event.target === modal) {

@@ -4,7 +4,7 @@
   "description": "Project for Yandex.Practicum",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode=production",
     "dev": "webpack serve"
   },
   "repository": {
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/MrLargha/mesto-project-ff#readme",
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.25.4",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
