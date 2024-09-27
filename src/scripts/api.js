@@ -18,18 +18,14 @@ export const handleResponse = (res) => {
 // Получение карточек
 export const getCardsFromServer = () => {
   return fetch(config.baseUrl + "/cards", {
-    headers: {
-      authorization: config.headers.authorization,
-    },
+    headers: config.headers
   }).then(handleResponse);
 };
 
 // Получение данных пользователя
 export const getUserData = () => {
   return fetch(config.baseUrl + "/users/me", {
-    headers: {
-      authorization: config.headers.authorization,
-    },
+    headers: config.headers
   }).then(handleResponse);
 };
 
@@ -37,10 +33,7 @@ export const getUserData = () => {
 export const editUserData = (newName, newDescription) => {
   return fetch(config.baseUrl + "/users/me", {
     method: "PATCH",
-    headers: {
-      authorization: config.headers.authorization,
-      "Content-Type": config.headers["Content-Type"],
-    },
+    headers: config.headers,
     body: JSON.stringify({
       name: newName,
       about: newDescription,
@@ -52,10 +45,7 @@ export const editUserData = (newName, newDescription) => {
 export const postNewCard = (newCard) => {
   return fetch(config.baseUrl + "/cards", {
     method: "POST",
-    headers: {
-      authorization: config.headers.authorization,
-      "Content-Type": config.headers["Content-Type"],
-    },
+    headers: config.headers,
     body: JSON.stringify({
       name: newCard.name,
       link: newCard.link,
@@ -67,9 +57,7 @@ export const postNewCard = (newCard) => {
 export const deleteCardFromServer = (card) => {
   return fetch(config.baseUrl + "/cards/" + card._id, {
     method: "DELETE",
-    headers: {
-      authorization: config.headers.authorization,
-    },
+    headers: config.headers
   }).then(handleResponse);
 };
 

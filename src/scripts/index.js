@@ -18,6 +18,7 @@ const cardList = content.querySelector(".places__list");
 // DOM Для edit button
 const editButton = document.querySelector(".profile__edit-button");
 const editModal = document.querySelector(".popup_type_edit");
+const editModalSubmitButton = editModal.querySelector(".popup__button")
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const newProfileNameInput = editModal.querySelector(".popup__input_type_name");
@@ -33,6 +34,7 @@ const newCardNameInput = newCardModal.querySelector(
 );
 const newCardUrlInput = newCardModal.querySelector(".popup__input_type_url");
 const newCardFormElement = newCardModal.querySelector(".popup__form");
+const newCardModalSubmitButton = newCardModal.querySelector(".popup__button")
 
 // DOM для открытия карточек
 const cardModal = document.querySelector(".popup_type_image");
@@ -46,7 +48,8 @@ const newImageModalInput = newImageModal.querySelector(
   ".popup__input_type_url"
 );
 const newImageButton = document.querySelector(".profile__image-edit-button");
-const newImageFormElement = newImageModal.querySelector(".popup__form");
+const avatarForm = newImageModal.querySelector(".popup__form");
+const avatarSubmitButton = newImageModal.querySelector(".popup__button")
 
 let userId;
 
@@ -78,8 +81,7 @@ newImageButton.addEventListener("click", () => {
 });
 
 // Добавить обработчик события submit для формы new card в модальном окне
-newCardModal
-  .querySelector(".popup__form")
+newCardFormElement
   .addEventListener("submit", newCardFormHandler);
 
 // Добавить обработчик события submit для формы edit в модальном окне
@@ -88,8 +90,7 @@ editModal
   .addEventListener("submit", editFormHandler);
 
 // Добавить обработчик события submit для формы new image в модальном окне
-newImageModal
-  .querySelector(".popup__form")
+avatarForm
   .addEventListener("submit", submitEditAvatarForm);
 
 // Поведение попапа изменения профиля (edit)
@@ -105,25 +106,25 @@ function editModalFunction(modal) {
 function submitEditAvatarForm(event) {
   event.preventDefault();
 
-  renderLoadingForm(true, newImageModal.querySelector(".popup__button"));
+  renderLoadingForm(true, avatarSubmitButton);
   postNewAvatar(newImageModalInput.value)
     .then((res) => {
       avatarImage.style.backgroundImage = `url(${res.avatar})`;
-      newImageFormElement.reset();
+      avatarForm.reset();
       closeModal(newImageModal);
     })
     .catch((error) => {
       console.log(`Ошибка: ${error.message}`);
     })
     .finally(() => {
-      renderLoadingForm(false, newImageModal.querySelector(".popup__button"));
+      renderLoadingForm(false, avatarSubmitButton);
     });
 }
 
 // Обработчик edit button
 function editFormHandler(event) {
   event.preventDefault();
-  renderLoadingForm(true, editModal.querySelector(".popup__button"));
+  renderLoadingForm(true, editModalSubmitButton);
   const newName = newProfileNameInput.value;
   const newDescription = newProfileDescriptionInput.value;
 
@@ -138,14 +139,14 @@ function editFormHandler(event) {
       console.log(`Ошибка: ${error.message}`);
     })
     .finally(() => {
-      renderLoadingForm(false, editModal.querySelector(".popup__button"));
+      renderLoadingForm(false, editModalSubmitButton);
     });
 }
 
 // Обработчик new button
 function newCardFormHandler(event) {
   event.preventDefault();
-  renderLoadingForm(true, newCardModal.querySelector(".popup__button"));
+  renderLoadingForm(true, newCardModalSubmitButton);
   const newCard = {
     name: newCardNameInput.value,
     link: newCardUrlInput.value,
@@ -176,19 +177,12 @@ function newCardFormHandler(event) {
       console.log(`Ошибка: ${error.message}`);
     })
     .finally(() => {
-      renderLoadingForm(false, newCardModal.querySelector(".popup__button"));
+      renderLoadingForm(false, newCardModalSubmitButton);
     });
 }
 
 // Функция открытия карточки
 function openCard(event) {
-  if (
-    event.target.classList.contains("card__like-button") ||
-    event.target.classList.contains("card__delete-button")
-  ) {
-    return;
-  }
-
   const link = event.currentTarget.querySelector(".card__image").src;
   const caption = event.currentTarget.querySelector(".card__title").textContent;
 
