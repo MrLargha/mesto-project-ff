@@ -183,8 +183,8 @@ function newCardFormHandler(event) {
 
 // Функция открытия карточки
 function openCard(event) {
-  const link = event.currentTarget.querySelector(".card__image").src;
-  const caption = event.currentTarget.querySelector(".card__title").textContent;
+  const link = event.currentTarget.src;
+  const caption = event.currentTarget.parentNode.querySelector(".card__title").textContent;
 
   // Присваиваем значения карточки значению попапа
   imageElement.src = link;
